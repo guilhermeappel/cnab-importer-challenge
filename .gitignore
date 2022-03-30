@@ -1,0 +1,10 @@
+#dotnet
+.vs/
+bin/
+obj/
+
+#react
+**/node_modules
+**/.pnp
+**/coverage
+**/build

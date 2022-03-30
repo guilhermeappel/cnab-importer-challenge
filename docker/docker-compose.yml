@@ -1,0 +1,43 @@
+version: "3.9"
+services:
+    api:
+        container_name: cnab-importer-api
+        build:
+            context: ../
+            dockerfile: ./src/CNAB.Importer.API/Dockerfile   
+        ports:
+            - 7702:80
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Docker
+        depends_on:
+            - db
+        networks:
+            - cnab-network
+    db:
+        image: postgres:13.4
+        container_name: cnab-importer-db
+        restart: always
+        environment:
+            - POSTGRES_USER=admin
+            - POSTGRES_PASSWORD=admin            
+        logging:
+          options:
+            max-size: 10m
+            max-file: "3"
+        volumes: 
+            - ./var/lib/postgresql/data
+        ports:
+            - 5432:5432
+        networks:
+            - cnab-network
+    app:
+        container_name: cnab-importer-app
+        build:
+            context: ../
+            dockerfile: ./src/CNAB.Importer.Client/Dockerfile
+        ports:
+            - 3000:3000
+
+networks:
+    cnab-network:
+        driver: bridge    
