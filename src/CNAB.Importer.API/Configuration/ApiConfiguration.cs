@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 using System.Text;
+using CNAB.Importer.API.Application.ExtensionMethods;
 
 namespace CNAB.Importer.API.Configuration;
 
@@ -13,6 +14,7 @@ public static class ApiConfiguration
     public static IServiceCollection AddApiConfiguration(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddRouting(options => options.LowercaseUrls = true);
+        services.AddOptions<AppSettings>().Bind(configuration.GetSection("AppSettings"));
 
         services
             .AddControllers()
@@ -51,7 +53,7 @@ public static class ApiConfiguration
             {
                 options.InvalidModelStateResponseFactory = context =>
                 {
-                    var errors = new Dictionary<string, IEnumerable<string>>();
+                    var errors = new Dictionary<string, IEnumerable<string>?>();
 
                     context.ModelState
                         .Select(ms => new
@@ -60,7 +62,7 @@ public static class ApiConfiguration
                             Value = ms.Value?.Errors.Select(x => x.ErrorMessage)
                         })
                         .ToList()
-                        .ForEach(x => errors.Add(x.Key, x.Value));
+                        .ForEach(x => errors.Add(x.Key.ToCamelCase(), x.Value));
 
                     return new BadRequestObjectResult(new
                     {

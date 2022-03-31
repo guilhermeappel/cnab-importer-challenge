@@ -2,7 +2,7 @@
 
 namespace CNAB.Importer.API.Application.Services.Implementations;
 
-public class TransactionService : ITransactionService
+public class TransactionService : BaseService, ITransactionService
 {
 
 }

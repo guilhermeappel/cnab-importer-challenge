@@ -1,8 +1,8 @@
 ﻿namespace CNAB.Importer.API.Application.InputModels;
 
-public class UserInputModel
+public class UserRegisterInputModel
 {
-    public string Email { get; set; }
+    public string Username { get; set; }
     public string Password { get; set; }
     public string PasswordConfirmation { get; set; }
 }

@@ -7,21 +7,24 @@ namespace CNAB.Importer.API.Infrastructure.Application;
 
 public class CamelCasePropertyNameResolver
 {
-    public static string ResolvePropertyName(Type type, MemberInfo memberInfo, LambdaExpression? expression)
+    public static string ResolvePropertyName(Type type, MemberInfo memberInfo, LambdaExpression expression)
     {
         return ToCamelCase(DefaultPropertyNameResolver(type, memberInfo, expression));
     }
 
-    private static string DefaultPropertyNameResolver(Type _, MemberInfo memberInfo, LambdaExpression? expression)
+    private static string DefaultPropertyNameResolver(Type type, MemberInfo memberInfo, LambdaExpression expression)
     {
-        if (expression == null)
+        if (expression != null)
         {
-            return memberInfo.Name;
+            var chain = PropertyChain.FromExpression(expression);
+
+            if (chain.Count > 0)
+            {
+                return chain.ToString();
+            }
         }
 
-        var chain = PropertyChain.FromExpression(expression);
-
-        return chain.Count > 0 ? chain.ToString() : memberInfo.Name;
+        return memberInfo?.Name;
     }
 
     private static string ToCamelCase(string value)

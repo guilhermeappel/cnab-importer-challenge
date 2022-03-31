@@ -12,17 +12,17 @@ public class UserMapping : IEntityTypeConfiguration<User>
             .HasKey(b => b.Id);
 
         builder
-            .HasIndex(b => b.Email)
+            .HasIndex(b => b.Username)
             .IsUnique();
 
         builder
-            .Property(b => b.Email)
+            .Property(b => b.Username)
             .IsRequired()
             .HasColumnType("varchar(100)");
 
         builder
             .Property(b => b.Password)
             .IsRequired()
-            .HasColumnType("varchar(20)");
+            .HasColumnType("varchar(50)");
     }
 }

@@ -1,7 +1,7 @@
 ﻿using CNAB.Importer.API.Infrastructure.Data.Entities;
 using CNAB.Importer.API.Infrastructure.Data.Interfaces;
-using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace CNAB.Importer.API.Infrastructure.Data.Repositories;
 
