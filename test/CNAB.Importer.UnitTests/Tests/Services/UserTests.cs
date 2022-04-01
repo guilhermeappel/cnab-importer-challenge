@@ -44,7 +44,6 @@ public class UserTests : DependencyInjectionTest
         var service = new UserService(repository, AppSettings);
 
         var inputUserAuthenticate = AuxiliaryMethods.CreateDefaultAuthUser();
-        inputUserAuthenticate.Username = "auth_fail";
 
         var result = await service.AuthenticateAsync(inputUserAuthenticate);
 
