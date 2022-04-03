@@ -21,7 +21,7 @@ namespace CNAB.Importer.API.Infrastructure.Data.Migrations
                     Value = table.Column<decimal>(type: "decimal", nullable: false),
                     Document = table.Column<string>(type: "varchar(11)", nullable: false),
                     Card = table.Column<string>(type: "varchar(12)", nullable: false),
-                    Hour = table.Column<string>(type: "varchar(6)", nullable: false),
+                    Hour = table.Column<string>(type: "varchar(8)", nullable: false),
                     StoreOwnerName = table.Column<string>(type: "varchar(14)", nullable: false),
                     StoreName = table.Column<string>(type: "varchar(19)", nullable: false)
                 },
@@ -47,20 +47,17 @@ namespace CNAB.Importer.API.Infrastructure.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Transactions_Date",
                 table: "Transactions",
-                column: "Date",
-                unique: true);
+                column: "Date");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Transactions_StoreName",
                 table: "Transactions",
-                column: "StoreName",
-                unique: true);
+                column: "StoreName");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Transactions_StoreOwnerName",
                 table: "Transactions",
-                column: "StoreOwnerName",
-                unique: true);
+                column: "StoreOwnerName");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Username",

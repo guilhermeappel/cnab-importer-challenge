@@ -12,16 +12,13 @@ public class TransactionMapping : IEntityTypeConfiguration<Transaction>
             .HasKey(b => b.Id);
 
         builder
-            .HasIndex(b => b.Date)
-            .IsUnique();
+            .HasIndex(b => b.Date);
 
         builder
-            .HasIndex(b => b.StoreName)
-            .IsUnique();
+            .HasIndex(b => b.StoreName);
 
         builder
-            .HasIndex(b => b.StoreOwnerName)
-            .IsUnique();
+            .HasIndex(b => b.StoreOwnerName);
 
         builder
             .Property(b => b.Type)
@@ -45,7 +42,7 @@ public class TransactionMapping : IEntityTypeConfiguration<Transaction>
 
         builder
             .Property(b => b.Hour)
-            .HasColumnType("varchar(6)");
+            .HasColumnType("varchar(8)");
 
         builder
             .Property(b => b.StoreOwnerName)

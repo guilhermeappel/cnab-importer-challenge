@@ -1,7 +1,7 @@
 export interface StoreTransaction {
   storeName: string;
   totalAmount: number;
-  transactionts: Transaction[];
+  transactions: Transaction[];
 }
 
 export interface Transaction {

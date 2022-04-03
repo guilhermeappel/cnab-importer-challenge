@@ -11,7 +11,7 @@ interface Props {
 interface ContextData {
   authenticated: boolean;
   errors: UserLoginErrors;
-  login: (user: UserCredentials) => void;
+  login: (user: UserCredentials) => Promise<void>;
   logout: () => void;
 }
 
@@ -22,7 +22,7 @@ const initialUserState: UserAuth | undefined = sessionUser
   : undefined;
 
 const initialUserErrors: UserLoginErrors = {
-  email: [],
+  username: [],
   password: [],
   invalidLogin: [],
 };
@@ -37,27 +37,24 @@ const AuthProvider = ({ children }: Props) => {
   const [user, setUser] = useState<UserAuth | undefined>(initialUserState);
   const [errors, setErrors] = useState<UserLoginErrors>(initialUserErrors);
 
-  const login = (user: UserCredentials) => {
-    service
-      .login(user)
-      .then((userAuth) => {
-        setUser(userAuth);
-        sessionStorage.setItem('cnab.user', JSON.stringify(userAuth));
+  const login = async (credentials: UserCredentials) => {
+    try {
+      const userAuth = await service.login(credentials);
+      setUser(userAuth);
 
-        // Send the user back to the page he tried to visit when he was
-        // redirected to the login page. Use { replace: true } so we don't create
-        // another entry in the history stack for the login page.  This means that
-        // when the user get to the protected page and click the back button, he
-        // won't end up back on the login page, which is also really nice for the
-        // user experience.
-        const from = ((location.state as any)?.from?.pathname as string) || '/';
-        navigate(from, { replace: true });
-      })
-      .catch((error) => {
-        if (error.response && error.response.status === 400) {
-          setErrors(error.response.data.errors);
-        }
-      });
+      // Send the user back to the page he tried to visit when he was
+      // redirected to the login page. Use { replace: true } so we don't create
+      // another entry in the history stack for the login page.  This means that
+      // when the user get to the protected page and click the back button, he
+      // won't end up back on the login page, which is also really nice for the
+      // user experience.
+      const from = ((location.state as any)?.from?.pathname as string) || '/';
+      navigate(from, { replace: true });
+    } catch (error: any) {
+      if (error.response && error.response.status === 400) {
+        setErrors(error.response.data.errors);
+      }
+    }
   };
 
   const logout = async () => {

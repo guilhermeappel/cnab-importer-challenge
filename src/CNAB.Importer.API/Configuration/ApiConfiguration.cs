@@ -1,11 +1,11 @@
-﻿using CNAB.Importer.API.Infrastructure.Application;
+﻿using CNAB.Importer.API.Application.ExtensionMethods;
+using CNAB.Importer.API.Infrastructure.Application;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 using System.Text;
-using CNAB.Importer.API.Application.ExtensionMethods;
 
 namespace CNAB.Importer.API.Configuration;
 
@@ -73,6 +73,16 @@ public static class ApiConfiguration
                 };
             });
 
+        services.AddCors(options =>
+        {
+            options.AddPolicy("Total",
+                builder =>
+                    builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+        });
+
         services.AddSwaggerGen();
 
         return services;
@@ -80,11 +90,10 @@ public static class ApiConfiguration
 
     public static WebApplication UseApiConfiguration(this WebApplication app)
     {
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+        app.UseSwagger();
+        app.UseSwaggerUI();
+
+        app.UseCors("Total");
 
         app.UseHttpsRedirection();
 

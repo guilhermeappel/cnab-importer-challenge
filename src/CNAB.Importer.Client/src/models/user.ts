@@ -19,7 +19,7 @@ export interface UserRegisterErrors {
 }
 
 export interface UserLoginErrors {
-  email: string[];
+  username: string[];
   password: string[];
   invalidLogin: string[];
 }

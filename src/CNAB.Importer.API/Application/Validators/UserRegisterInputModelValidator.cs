@@ -20,6 +20,10 @@ public class UserRegisterInputModelValidator : AbstractValidator<UserRegisterInp
         RuleFor(x => x.Password)
             .NotEmpty()
             .MaximumLength(20);
+
+        RuleFor(x => x.PasswordConfirmation)
+            .NotEmpty()
+            .MaximumLength(20);
     }
 
     public async Task<bool> BeUniqueEmailAsync(string username, CancellationToken cancellationToken)

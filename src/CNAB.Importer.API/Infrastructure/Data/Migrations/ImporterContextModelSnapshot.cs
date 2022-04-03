@@ -43,7 +43,7 @@ namespace CNAB.Importer.API.Infrastructure.Data.Migrations
 
                     b.Property<string>("Hour")
                         .IsRequired()
-                        .HasColumnType("varchar(6)");
+                        .HasColumnType("varchar(8)");
 
                     b.Property<string>("StoreName")
                         .IsRequired()
@@ -61,14 +61,11 @@ namespace CNAB.Importer.API.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Date")
-                        .IsUnique();
+                    b.HasIndex("Date");
 
-                    b.HasIndex("StoreName")
-                        .IsUnique();
+                    b.HasIndex("StoreName");
 
-                    b.HasIndex("StoreOwnerName")
-                        .IsUnique();
+                    b.HasIndex("StoreOwnerName");
 
                     b.ToTable("Transactions");
                 });

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: '',
+  baseURL: process.env.API_URL || 'http://localhost:7702/api/',
 });
 
 instance.interceptors.request.use((request) => {
@@ -9,7 +9,7 @@ instance.interceptors.request.use((request) => {
     sessionStorage.getItem('cnab.user') as string
   )?.token;
 
-  request.headers!['Authorization'] = token;
+  request.headers!['Authorization'] = `Bearer ${token}`;
 
   return request;
 });
