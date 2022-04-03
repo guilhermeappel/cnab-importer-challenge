@@ -2,6 +2,7 @@
 using CNAB.Importer.API.Infrastructure.Application;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
@@ -83,6 +84,17 @@ public static class ApiConfiguration
                         .AllowAnyHeader());
         });
 
+        services
+            .AddHttpsRedirection(options => { options.HttpsPort = 443; });
+
+        services.Configure<ForwardedHeadersOptions>(options =>
+        {
+            options.KnownNetworks.Clear();
+            options.KnownProxies.Clear();
+            options.ForwardedHeaders =
+                ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+        });
+
         services.AddSwaggerGen();
 
         return services;
@@ -93,9 +105,14 @@ public static class ApiConfiguration
         app.UseSwagger();
         app.UseSwaggerUI();
 
-        app.UseCors("Total");
+        if (app.Environment.IsProduction())
+        {
+            app.UseForwardedHeaders();
+            app.UseHttpsRedirection();
+        }
 
-        app.UseHttpsRedirection();
+        app.UseCors("Total");
+        app.UseRouting();
 
         app.UseAuthentication();
         app.UseAuthorization();

@@ -4,7 +4,7 @@ services:
         container_name: cnab-importer-api
         build:
             context: ../
-            dockerfile: ./src/CNAB.Importer.API/Dockerfile   
+            dockerfile: ./src/CNAB.Importer.API/Dockerfile.Development
         ports:
             - 7702:80
         environment:
@@ -34,7 +34,7 @@ services:
         container_name: cnab-importer-app
         build:
             context: ../
-            dockerfile: ./src/CNAB.Importer.Client/Dockerfile
+            dockerfile: ./src/CNAB.Importer.Client/Dockerfile.Development
         ports:
             - 3000:3000
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: process.env.API_URL || 'http://localhost:7702/api/',
+  baseURL: 'https://cnab-importer-api.herokuapp.com/api/',
 });
 
 instance.interceptors.request.use((request) => {
