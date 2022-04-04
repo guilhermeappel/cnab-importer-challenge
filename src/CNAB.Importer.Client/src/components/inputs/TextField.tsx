@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ErrorLabel } from '../../styles/labels';
+import { ErrorLabel } from '../../styles/text';
 
 interface Props {
   label: string;

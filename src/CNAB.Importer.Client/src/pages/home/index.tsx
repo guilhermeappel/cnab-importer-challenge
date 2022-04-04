@@ -11,6 +11,9 @@ import { StoreTransaction, Transaction } from '../../models/transaction';
 
 import { formatDate } from '../../utils/date';
 import { currencyFormat } from '../../utils/number';
+import { getSignal, TransactionDescription } from '../../utils/transaction';
+import { Subtitle, Title } from '../../styles/text';
+import { Table, TableHeader, TableRow } from '../../styles/grid/Table';
 
 const ContainerList = styled.div`
   margin-bottom: 40px;
@@ -57,21 +60,35 @@ const Home = () => {
         ({ storeName, totalAmount, transactions }: StoreTransaction) => (
           <Grid key={storeName}>
             <Row>
-              <Column size={1}>{storeName}</Column>
-              <Column size={2}>Total: {currencyFormat(totalAmount)}</Column>
+              <Column size={1}>
+                <Title>{storeName}</Title>
+              </Column>
+              <Column size={4}>
+                <Subtitle>Total: {currencyFormat(totalAmount)}</Subtitle>{' '}
+              </Column>
             </Row>
+
             <ContainerList>
-              <Grid>
+              <Table>
+                <TableHeader>
+                  <Column size={1}>Date</Column>
+                  <Column size={1}>Value</Column>
+                  <Column size={1}>Type</Column>
+                </TableHeader>
                 {transactions.map(
                   ({ date, value, type }: Transaction, index) => (
-                    <Row key={index}>
-                      <Column size={1}>Date: {formatDate(date)}</Column>
-                      <Column size={1}>Value: {currencyFormat(value)}</Column>
-                      <Column size={1}>Type: {type}</Column>
-                    </Row>
+                    <TableRow key={index}>
+                      <Column size={1}>{formatDate(date)}</Column>
+                      <Column size={1}>
+                        {`${getSignal(type)} ${currencyFormat(value)}`}
+                      </Column>
+                      <Column size={1}>
+                        {TransactionDescription.get(type)}
+                      </Column>
+                    </TableRow>
                   )
                 )}
-              </Grid>
+              </Table>
             </ContainerList>
           </Grid>
         )

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../../components/buttons';
 import { Link } from '../../components/navigations';
@@ -10,31 +9,17 @@ import { useAuth } from '../../contexts/Auth';
 import { UserCredentials } from '../../models/user';
 
 import { Column, Grid, Row } from '../../styles/grid';
-import ErrorLabel from '../../styles/labels/ErrorLabel';
-
-interface UserErrors {
-  username: string[];
-  password: string[];
-  invalidLogin: string[];
-}
+import ErrorLabel from '../../styles/text/ErrorLabel';
 
 const initialUser: UserCredentials = {
   username: '',
   password: '',
 };
 
-const initialUserErrors: UserErrors = {
-  username: [],
-  password: [],
-  invalidLogin: [],
-};
-
 const Login = () => {
-  const navigate = useNavigate();
   const { errors, login } = useAuth();
 
   const [loading, setLoading] = useState(false);
-
   const [user, setUser] = useState(initialUser);
 
   const handleChange = (key: keyof UserCredentials, value: string) => {
