@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CNAB.Importer.API", "src\CN
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CNAB.Importer.UnitTests", "test\CNAB.Importer.UnitTests\CNAB.Importer.UnitTests.csproj", "{904E9C59-3264-417F-A8F2-B02D63C62167}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CNAB.Importer.AutomatedTests", "test\CNAB.Importer.AutomatedTests\CNAB.Importer.AutomatedTests.csproj", "{3A2A8C1D-6B92-41EF-970F-EE8E7CB97AAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{904E9C59-3264-417F-A8F2-B02D63C62167}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{904E9C59-3264-417F-A8F2-B02D63C62167}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{904E9C59-3264-417F-A8F2-B02D63C62167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A2A8C1D-6B92-41EF-970F-EE8E7CB97AAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A2A8C1D-6B92-41EF-970F-EE8E7CB97AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A2A8C1D-6B92-41EF-970F-EE8E7CB97AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A2A8C1D-6B92-41EF-970F-EE8E7CB97AAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4C7E1617-B644-4F98-AE60-5147F7DBBDD0} = {E4097F1C-4454-48A0-802E-D953CEA43F14}
 		{904E9C59-3264-417F-A8F2-B02D63C62167} = {7DB636F0-6EE6-4CE9-80A7-8A6D908612DA}
+		{3A2A8C1D-6B92-41EF-970F-EE8E7CB97AAB} = {7DB636F0-6EE6-4CE9-80A7-8A6D908612DA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ABE76909-1B29-48DF-9094-668591D3FDDD}
