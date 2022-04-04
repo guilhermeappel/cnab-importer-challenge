@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-export interface ButtonProps {
+export interface Props {
+  id: string;
   children?: React.ReactNode;
   type?: 'button' | 'submit' | 'reset';
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -36,9 +37,9 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ children, onClick, type = 'button' }: ButtonProps) => {
+const Button = ({ children, onClick, type = 'button', ...rest }: Props) => {
   return (
-    <StyledButton type={type} onClick={onClick}>
+    <StyledButton type={type} onClick={onClick} {...rest}>
       {children}
     </StyledButton>
   );

@@ -64,6 +64,7 @@ const Register = () => {
         <Row>
           <Column size={1}>
             <TextField
+              id='username'
               placeholder='Enter your username'
               label='Username'
               value={user.username}
@@ -76,6 +77,7 @@ const Register = () => {
         <Row>
           <Column size={1}>
             <TextField
+              id='password'
               placeholder='Enter your password'
               label='Password'
               type='password'
@@ -89,6 +91,7 @@ const Register = () => {
         <Row>
           <Column size={1}>
             <TextField
+              id='passwordConfirmation'
               placeholder='Enter your password confirmation'
               label='Password Confirmation'
               type='password'
@@ -103,7 +106,9 @@ const Register = () => {
 
         <Row>
           <Column size={1}>
-            <Button type='submit'>REGISTER</Button>
+            <Button id='register' type='submit'>
+              REGISTER
+            </Button>
           </Column>
         </Row>
       </Grid>

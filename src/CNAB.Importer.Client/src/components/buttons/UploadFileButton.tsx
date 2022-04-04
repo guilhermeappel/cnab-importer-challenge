@@ -4,10 +4,11 @@ import Button from './Button';
 import { InputFile } from '../../styles/inputs';
 
 interface Props {
+  id: string;
   onChange: (event: FormEvent<HTMLInputElement>) => void;
 }
 
-const UploadFileButton = ({ onChange }: Props) => {
+const UploadFileButton = ({ id, onChange }: Props) => {
   const hiddenFileInput = useRef<HTMLInputElement>(null);
 
   const handleClick = () => {
@@ -20,7 +21,10 @@ const UploadFileButton = ({ onChange }: Props) => {
 
   return (
     <>
-      <Button onClick={handleClick}>UPLOAD</Button>
+      <Button id={id} onClick={handleClick}>
+        UPLOAD
+      </Button>
+
       <InputFile
         ref={hiddenFileInput}
         type='file'

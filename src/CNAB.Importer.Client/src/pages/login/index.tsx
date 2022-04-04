@@ -42,6 +42,7 @@ const Login = () => {
         <Row>
           <Column size={1}>
             <TextField
+              id='username'
               placeholder='Enter your username'
               label='Username'
               value={user.username}
@@ -54,6 +55,7 @@ const Login = () => {
         <Row>
           <Column size={1}>
             <TextField
+              id='password'
               placeholder='Enter your password'
               label='Password'
               type='password'
@@ -67,20 +69,24 @@ const Login = () => {
         {errors.invalidLogin.length > 0 && (
           <Row>
             <Column size={1}>
-              <ErrorLabel>{errors.invalidLogin[0]}</ErrorLabel>
+              <ErrorLabel id='invalidLogin-error'>
+                {errors.invalidLogin[0]}
+              </ErrorLabel>
             </Column>
           </Row>
         )}
 
         <Row>
           <Column size={1}>
-            <Button type='submit'>LOGIN</Button>
+            <Button id='login' type='submit'>
+              LOGIN
+            </Button>
           </Column>
         </Row>
 
         <Row>
           <Column>
-            <Link to='/register'>
+            <Link id='register' to='/register'>
               Don't have an account? Create one clicking here.
             </Link>
           </Column>

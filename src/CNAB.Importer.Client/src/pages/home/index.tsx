@@ -52,7 +52,7 @@ const Home = () => {
     <Grid>
       <Row>
         <Column size={1}>
-          <UploadFileButton onChange={handleFileUpload} />
+          <UploadFileButton id='upload-file' onChange={handleFileUpload} />
         </Column>
       </Row>
 

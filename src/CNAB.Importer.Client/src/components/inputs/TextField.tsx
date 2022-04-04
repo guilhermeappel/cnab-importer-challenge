@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { ErrorLabel } from '../../styles/text';
 
 interface Props {
+  id: string;
   label: string;
   value: string;
   placeholder: string;
@@ -46,6 +47,7 @@ const Label = styled.div`
 `;
 
 const TextField = ({
+  id,
   value,
   label,
   onChange,
@@ -57,13 +59,14 @@ const TextField = ({
     <>
       <Label>{label}</Label>
       <StyledTextField
+        id={id}
         type={type}
         value={value}
         onChange={onChange}
         error={!!errorMessage}
         {...rest}
       />
-      <ErrorLabel>{errorMessage}</ErrorLabel>
+      <ErrorLabel id={`${id}-error`}>{errorMessage}</ErrorLabel>
     </>
   );
 };
