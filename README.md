@@ -15,7 +15,9 @@ PS: It runs a Docker PostgreSQL Database using the port `5432`, so be sure to no
 ## Live example
 
 The front-end application is deployed at: https://cnab-importer.herokuapp.com/
+
 The back-end application is deployed at: https://cnab-importer-api.herokuapp.com/api/
 
-PS¹: Swagger available through https://cnab-importer-api.herokuapp.com/swagger/
-PS²: It runs a Heroku PostgreSQL Database deployed on Heroku.
+- PS¹: Swagger Docs available through https://cnab-importer-api.herokuapp.com/swagger/
+
+- PS²: It runs a Heroku PostgreSQL Database deployed on Heroku.
